@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="kapper.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.8/xlsx.full.min.js"></script>
+<title>Klant</title>
+</head>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="beheerder.html">Beheerder</a>
+        <a href="werknemer.html">Werknemer</a>
+        <a href="klant.html">Klant</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+<div class="icon" onclick="openNav()">
+    <span class="roundbox"></span>
+    <span class="roundbox"></span>
+    <span class="roundbox"></span>
+</div>
+<form action="savedata.php" method="post">
+    <fieldset>
+        <legend>Afspraak maken</legend>
+        <div class="input">
+            <label for="voornaam">Voornaam:</label>
+            <input id="voornaam" type="text" name="voornaam">            
+        </div>
+        <div class="input">
+            <label for="achternaam">Achternaam:</label>
+            <input id="achternaam" type="text" name="achternnaam">            
+        </div>
+        <div class="input">
+            <label for="email">Email:</label>
+            <input id="email" type="text" name="email">            
+        </div>
+        <div class="input">
+            <label for="typeafspraak">Typeafspraak:</label>
+            <select id="typeafspraak" onchange="updateTimeSlots()">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>      
+        </div>
+        <div class="input">
+            <label for="kapper">Kapper:</label>
+            <select id="kapper">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>      
+        </div>
+        <div class="input">
+            <label for="datum">Kies een datum:</label>
+            <input id="datum" type="date" name="datum">
+        </div>
+        <div class="input">
+            <label for="tijd">Kies een tijd:</label>
+            <select id="tijd" name="tijd"></select>
+        </div>
+        <button type="button" onclick="alert('Send form')">Maak afspraak</button>
+    </fieldset> 
+</form>
+<script>
+console.log('start');
+// for date picker:
+// Get today's date
+    var today = new Date();
+
+    // Get the end of the current year
+    var endOfYear = new Date(today.getFullYear()+1, 11, 31);
+
+    // Format the dates as YYYY-MM-DD
+    var formattedDateMin = today.toISOString().split('T')[0];
+    var formattedDateMax = endOfYear.toISOString().split('T')[0];
+
+    // Set the value of the input element to today's date
+    document.getElementById('datum-kiezer').setAttribute("min", formattedDateMin);
+
+    // Set the maximum value of the input element to the end of the current year
+    document.getElementById('datum-kiezer').setAttribute("max", formattedDateMax);
+    function updateTimeSlots() {
+        var typeafspraak = document.getElementById("typeafspraak").value;
+        var select = document.getElementById("tijd");
+        select.innerHTML = ''; // Clear previous options
+    
+        // Generate time slots based on the selected typeafspraak
+        // Here you can add your logic to generate time slots dynamically
+        // For demonstration, let's assume different time slots for each typeafspraak
+        switch (typeafspraak) {
+            case '1':
+                addTimeSlot("10:00");
+                addTimeSlot("11:00");
+                addTimeSlot("12:00");
+                break;
+            case '2':
+                addTimeSlot("13:00");
+                addTimeSlot("14:00");
+                addTimeSlot("15:00");
+                break;
+            case '3':
+                addTimeSlot("16:00");
+                addTimeSlot("17:00");
+                addTimeSlot("18:00");
+                break;
+            case '4':
+                addTimeSlot("19:00");
+                addTimeSlot("20:00");
+                addTimeSlot("21:00");
+                break;
+            default:
+                // Default time slots
+                addTimeSlot("09:00");
+                addTimeSlot("10:00");
+                addTimeSlot("11:00");
+                break;
+        }
+    }
+    
+    function addTimeSlot(time) {
+        var option = document.createElement("option");
+        option.text = time;
+        option.value = time;
+        document.getElementById("tijd").appendChild(option);
+    }
+    
+    // Call updateTimeSlots initially to populate the time slots based on the initial value of typeafspraak
+    updateTimeSlots();
+
+
+
+// for sidebar navigation:
+    var validReferrers = ["beheerder.html", "werknemer.html", "contact.html"];
+
+    // JavaScript for index.html
+    if (validReferrers.some(referrer => document.referrer.includes(referrer))) {
+        closeNav()
+    }
+    
+    // JavaScript for other.html and another.html (similar code with appropriate changes)
+    if (validReferrers.some(referrer => document.referrer.includes(referrer))) {
+        openNav()
+    }    
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+   
+</body>
+</html> 

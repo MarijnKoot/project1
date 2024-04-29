@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="kapper.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.8/xlsx.full.min.js"></script>
+<title>Contact</title>
+</head>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="beheerder.html">Beheerder</a>
+        <a href="werknemer.html">Werknemer</a>
+        <a href="klant.html">Klant</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+<div class="icon" onclick="openNav()">
+    <span class="roundbox"></span>
+    <span class="roundbox"></span>
+    <span class="roundbox"></span>
+</div>
+<script>
+// for sidebar navigation:
+    var validReferrers = ["beheerder.html", "werknemer.html", "klant.html"];
+
+    // JavaScript for index.html
+    if (validReferrers.some(referrer => document.referrer.includes(referrer))) {
+        closeNav()
+    }
+    
+    // JavaScript for other.html and another.html (similar code with appropriate changes)
+    if (validReferrers.some(referrer => document.referrer.includes(referrer))) {
+        openNav()
+    }    
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+   
+</body>
+</html> 

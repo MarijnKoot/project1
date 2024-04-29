@@ -1,0 +1,155 @@
+:root {
+    --background: bisque;
+    --hover: rgba(0, 0, 0, 0.76);
+}
+
+
+body, html{
+    background-color: var(--background);
+    font-family: "Lato", sans-serif;
+    /* overflow: hidden; */
+    margin-left: 10px;
+    margin-right: 0px;
+    padding: 0;
+    height: 100%;
+    width: 95%;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: var(--background);
+  border: black 4px solid;
+  border-radius: 4px 0px 4px 0px;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  height: 100%;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 1000;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: var(--hover);
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.icon {
+    /* Icon for the side navigation bar*/
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    border-color: black 1px solid;
+}
+.roundbox {
+    /* individual bars of navigation bars icon*/
+    display: block;
+    width: 40px;
+    margin-bottom: 6px;
+    padding: 5px;
+    background-color: black;
+    border-radius: 5px;
+}
+.icon:hover .roundbox{
+    background-color: var(--hover);
+}
+
+/* BFP-project */
+
+.container {
+    height: 100%;
+}
+.topbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.downloadbutton {
+    display: inline-block; 
+
+    padding: 10px 20px; /* Adjust padding as needed */
+    color: black;
+    border: solid black;
+    border-radius: 10px;
+    
+    text-decoration: none;
+    /* Make buttons inline-block to set a fixed size */
+    width: 120px; /* Set a fixed width for the buttons */
+    height: 20px; /* Set a fixed height for the buttons */
+    text-align: center;
+    line-height: 20px; /* Vertically center text in buttons */
+    
+}
+.text {
+    padding: 40px;
+}
+.gif-container {
+    display: flex;
+    justify-content: space-between; /* Adjust alignment as needed */
+    padding: 20px 0; /* Add vertical padding */
+}
+
+.gif {
+    width: 30%; /* Adjust the width as needed */
+    height: auto;
+    text-align: center;
+}
+
+.gif img {
+    max-width: 100%; /* Ensure images fit within their containers */
+}
+
+.gif figcaption {
+    margin-top: 10px;
+}
+
+
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: white; 
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.879); 
+  }
+  ::-webkit-scrollbar-track {
+    background-color: black;
+  }
+
+  fieldset {
+    background-color: white;
+  }
+
+  .input {
+    display: block;
+    margin-bottom: 20px; /* Adjust the margin as needed */
+}
+

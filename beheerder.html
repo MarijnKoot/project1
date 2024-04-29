@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.8/xlsx.full.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="kapper.css">
+<title>Beheerder</title>
+</head>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="beheerder.html">Beheerder</a>
+        <a href="werknemer.html">Werknemer</a>
+        <a href="klant.html">Klant</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+<div class="icon" onclick="openNav()">
+    <span class="roundbox"></span>
+    <span class="roundbox"></span>
+    <span class="roundbox"></span>
+</div>
+
+<input type="file" id="fileInput" accept=".xlsx, .xls">
+<button onclick="convertToCSV()">Convert to CSV</button>
+
+<div id="csvTable"></div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+function convertToCSV() {
+    console.log('convertToCSV function called'); // Check if function is called
+    const fileInput = document.getElementById('fileInput');
+    console.log('fileInput value:', fileInput.value); // Check file input value
+    const file = fileInput.files[0];
+    
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const data = new Uint8Array(event.target.result);
+        const workbook = XLSX.read(data, {type: 'array'});
+        const firstSheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[firstSheetName];
+        const csv = XLSX.utils.sheet_to_csv(worksheet);
+  
+        // Display CSV data as a table
+        displayCSVTable(csv);
+      };
+      reader.readAsArrayBuffer(file);
+    }
+}
+
+function displayCSVTable(csvData) {
+    console.log('CSV data:', csvData); // Check CSV data
+    const csvRows = csvData.trim().split('\n');
+    const table = document.createElement('table');
+    for (let i = 0; i < csvRows.length; i++) {
+      const row = table.insertRow();
+      const cells = csvRows[i].split(',');
+      for (let j = 0; j < cells.length; j++) {
+        const cell = row.insertCell();
+        cell.textContent = cells[j];
+      }
+    }
+    document.getElementById('csvTable').innerHTML = '';
+    document.getElementById('csvTable').appendChild(table);
+}
+</script>
+</body>
+</html>
+
